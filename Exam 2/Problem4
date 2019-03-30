@@ -1,0 +1,58 @@
+Problem 4.
+
+Let n = length of the array of books.
+Thus, if we want to add n books to the library such that
+i'th book has i copies, adding all the books will 
+require  (1 + 2*2 + 3*3 + ... + n*n) calls 
+to addBook method.
+Therefore, total work can be calculated as:
+(1 + 2*2 + 3*3 + ... + n*n) * workToAddOneBook =
+n(n+1)(2n+1)/6 * workToAddOneBook = 
+(n^3/3 + n^2/2 + n/6) * workToAddOneBook
+
+Now, we look at two suggested approaches to compute
+total work for each of two values of workToAddOneBook.
+
+Approach A:
+This algorithm consists of two parts:
+call to bookList.add and call to merge sort. 
+Since bookList is an ArrayList, bookList.add
+simply puts the given item to the last position
+of the list (as stated in the problem, we are assuming
+that expanding arraylist is not necessary at any point),
+this method requires constant amount of work regardless
+of the size of the array. We name this constant amount
+of work Y. The second part of the algorithm is a call to merge
+sort that ensures the bookList is sorted. As we examined in 
+Sorting Lab due november 9, merge sort is an n*log_n 
+algorithm because it performs n copying from one array
+to another regardless of the values of elements in the array, 
+and such procedure is performed log_n times. Therefore, 
+one arbitrary call to addBook will require Y + nlog_n 
+amount of work.
+So, we can conclude that the total work required to add
+n books using approach A is:
+(n^3/3 + n^2/2 + n/6) * (nlog_n + Y) =
+n^4*log(n)/3 + n^3*log(n)/2 + n^2*log(n)/6 + Y(n^3/3 + n^2/2 + n/6).
+Looking at the highest power of n, we conclude that this is a O(n^4*log(n))
+algorithm.
+
+Approach B:
+This approach effectively implements insertion
+sort by finding the right place where an item needs
+to be inserted and placing it there. 
+In our case, the list is maintained in a sorted order at all times. 
+Therefore, to add one particular book, we would need to iterate
+through the array no more than once (on average, we'll examine n/2
+elements), before we can insert the given element to its correct
+position. Besides, each time we add a new book, we'll assign 
+length of the array to variable i, and call bookList.add, both 
+of which require constant work regardless of the length
+of the array. So, this constant can be named Y.
+Thus, total work becomes:
+(n^3/3 + n^2/2 + n/6) * (n + Y) =
+n^4/3 + n^3/2 + n^2/6 + Y(n^3/3 + n^2/2 + n/6)
+By looking at the highest power of n, we can see that
+this is O(n^4) algorithm.
+
+

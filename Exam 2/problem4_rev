@@ -1,0 +1,66 @@
+
+Let n = length of the array of books.
+Thus, if we want to add n books to the library such that
+i'th book has i copies, adding all the books will 
+require 1 + 2 + 3 + ... + n calls to addBook method. 
+Therefore, total work required can be calculated as:
+(1 + 2 + ... + n) * workToAddOneBook = (n^2 + n)/2 * workToAddOneBook.
+
+Now we consider approaches A and B separately.
+
+Approach A:
+This algorithm consists of two parts:
+call to bookList.add and call to merge sort. 
+Since bookList is an ArrayList, bookList.add
+simply puts the given item to the last position
+of the list (as stated in the problem, we are assuming
+that expanding arraylist is not necessary at any point),
+this method requires constant amount of work regardless
+of the size of the array. We name this constant amount
+of work Y. The second part of the algorithm is a call to merge
+sort that ensures the bookList is sorted. As we examined in 
+Sorting Lab due november 9, merge sort is an x*log_x 
+algorithm because it performs x copying from one array
+to another regardless of the values of elements in the array, 
+and such procedure is performed log_x times. Therefore, 
+one arbitrary call to addBook will require Y + xlog_x
+amount of work, where x is the length of the array. 
+Thus, we can conclude that the total work required to add 
+n books to the library with approach A is: 
+(n^2 + n)/2 * ( (Y + 1log_1) + (Y + 2log_2) + ... + (Y + nlog_n)) = 
+(n^2/2 + n/2) * (n*Y + (1log_1 + 2log_2 + ... + nlog_n) =
+n^3*Y/2 + n^2/2 * (1log_1 + 2log_2 + ... + nlog_n) + n^2*Y/2 + 
++ n/2 * (1log_1 + 2log_2 + ... + nlog_n).
+Since the complexity of (1log_1 + 2log_2 + ... + nlog_n) is O(n^2log_n), 
+this can be approximated as n^3*Y/2 + n^2/2 *n^2log_n + n^2*Y/2 + 
++ n/2 * n^2log_n =  n^3*Y/2 + n^4*log_n/2 + n^2*Y/2 + n^3*log_n/2
+The term with the highest power of n is  n^4*log_n/2, thus this is O(n^4*log_n) algorithm.
+
+
+Approach B:
+This approach implies going through the array of books to find the proper
+location for the new book and places it there. 
+Thus,this version of addBook requires the following total work:
+get_length + assign_lenght_to_i + iterationsThroughArray + insertBook.
+Since get_length + assign_lenght_to_i + insertBook require the same amount of
+work regardless of the length of the array, we bundle these operations
+together and name them Y. Thus, addBook requires Y + iterationsThroughArray operations.
+Now, iterateThroughArray will require to iterate through the entire array
+every time a new book is to be added because titles are in descending order and
+books in the library should be in ascending order. Therefore, to add n elements,
+we will need to perform 1 + 2 + 3 + ... + n = (n^2+n)/2 iterations.
+Then, total work for this addBook method becomes:
+(n^2+n)/2 + Y, which is O(n^2) algorithm.
+
+
+In conclusion, we can put our results together to see that adding books
+with approach A will require the following number of operations:
+(n^2 + n)/2 * (n^3*Y/2 + n^4*log_n/2 + n^2*Y/2 + n^3*log_n/2) which, in simpler terms
+yields a O(n^2 * n^4*log_n) = O(n^6 * log_n) complexity.
+With approach B, we will perform: 
+(n^2 + n)/2 * ((n^2+n)/2 + Y) which is O(n^4) algorithm.
+
+
+
+
+

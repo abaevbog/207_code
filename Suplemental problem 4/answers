@@ -1,0 +1,101 @@
+In order to test the following program, we consider
+all different inputs possible for queues variant,
+number of queues and dequeues cutoff with 0.5 probability of 
+sending a new request being 0.5:
+1)for queues variant A:
+ 	try a variety of values for number of queues and dequeues cutoff.
+	We should observe that the last two input values do not cause 
+	any effect on average wait time, since only one queue will be used. 
+2)queue variant B:
+	try 1 as the number of queues and a variety of dequeues cutoff inputs.
+	Expect similar average wait time as for variant A.
+	try 5 and 10 as the number of queues and a variety of dequeues cutoff
+	inputs. Expect that as the number of queues increases, the average wait
+	time decreases
+3) queue variant C:
+	try 1 as the number of queues and a variety of dequeues cutoff inputs.
+	Expect similar average wait time as for variant A.
+	try 5 and 10 as the number of queues with a variety of dequeues cutoff
+	inputs. Since this approach will be placing requests into queues based on
+	number of pages mod number of queues, large requests can find themselves
+	in top priority queues, and small requests can find themselves in the 
+	lowest priority queue. Thus, we can expect an average wait time higher
+	than in B, potentially similar to A.
+	
+Finally, we should run this simulation with different probabilities of having a
+new request sent: 0 and 1 and expect that no requests are sent in 1st case and
+that request is sent each clock cycle in another one.
+
+Testing:
+The probability of a new request here is 0.5 
+
+	for queues variant A:
+	for all different inputs of number of queues and dequeues cutoff, the
+	output was roughly the same:
+	
+	Simulation finished with clock cycles:~ 22000
+	Performed ~500 requests
+	Total wait time:~5500000
+	Average wait time:~11000
+	Max wait time:~ 22000
+	
+	for queues variant B:
+	Running it with 1 queue and any other number of dequeues results in
+	behavior similar to A, which is expected. 
+	for 5 queues and 5 dequeues cutoff, we get something like:
+	
+	Simulation finished with clock cycles: 25298
+	Performed 482 requests
+	Total wait time: 5033528
+	Average wait time: 10443.004149377593
+	Max wait time: 24273
+
+	which is already better than A. Running it with 5 queues and other dequeues
+	cutoffs results in a similar behavior. 
+	Now, note that running it with 10 queues and different dequeues cutoffs gives us: 
+	
+	Simulation finished with clock cycles: 24369
+	Performed 479 requests
+	Total wait time: 3837207
+	Average wait time: 8010.870563674322
+	Max wait time: 23280
+	
+	which means that our expectations that the more queues we have, the less average 
+	wait time is has been confirmed
+	
+	for queues variant C:
+	running it with number of queues: 1,5,10 and a variety of dequeue cutoffs
+	results in similar behavior like:
+	
+	Simulation finished with clock cycles: 25594
+	Performed 508 requests
+	Total wait time: 6243945
+	Average wait time: 12291.23031496063
+	Max wait time: 24514
+	
+	which is also expected, since this placement can put large queues
+	into high priority queues which results in behavior very similar to A.
+	
+
+Finally, running any combination of inputs with probability of request = 0 gives us:
+
+	Simulation finished with clock cycles: 1000
+	Performed 0 requests
+	Total wait time: 0
+	Average wait time: NaN
+	Max wait time: 0
+	
+and running any combination of inputs results in a new request being issued every clock
+cycle which i verified using the debugger.
+
+Tests I ran have confirmed our original assumptions, and therefore, I believe the
+program works as expected.
+	
+	
+	
+	
+	
+	
+	
+	
+	

@@ -1,0 +1,49 @@
+In order to test this program, we need to
+add several entries to the registrar, print them 
+using both printing methods to make sure that linked list 
+and tree structure
+is maintained properly, and then verify that methods 
+findCredits and updateCredits work as intended by calling
+those methods and printing the registrar arranged by username 
+first and then - by credits. 
+
+
+We add 5 entries to the registrar, and print them 
+by username. The entries are printed in ascending 
+order based on their username, so this means that 
+printByUsername method works as intended. Then
+ we call printByCredits, and the entries are printed
+ in ascending order based on the credits each person
+ has. Thus, printByCredits works as intended, and
+ insert method does maintain the tree and linked
+ list structure based on given specification of this
+ problem.
+ 
+ Next, we update credits of 3 existing users and try to update
+ and find credits of a user that does not exist. We firstly see
+ that update of a non-existing user returned false, and findCredits
+ returned -1.0, which means that the person was not found and the 
+ data structure was not altered.
+ Then, we call print by Credits again to see that indeed
+ the entries whose credits were updated have new values:
+ 
+ Username: firstUser
+Credits: 30.0
+
+Username: fourthUser
+Credits: 23.0
+
+Username: lastUser
+Credits: 20.0
+
+ Finally, we findCredits of the existing entries,
+ and we get the output that matches what was just printed
+ by printByCredits: 
+ 
+Credits of thirdUser= 25.0
+Credits of lastUser= 20.0
+
+Thus, we can conclude that all methods work as expected.
+ 
+ 
+ 

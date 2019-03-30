@@ -1,0 +1,6 @@
+1) numberInCart cannot be implemented in ShoppingCart with the specified fields because "name" field of Item class is protected, which means one can only access these fields from within Item class or its subclasses. ShoppingCart class, in 
+which I implemented main to test my code, does not extend Item class, so it cantaccess the protected fields of a different class. 
+2) In order to implement numberInCart, I created a public method "equals" in 
+Item class that compares the name of an item with a given string. I chose this
+approach for security purposes to avoid unnecessary exposure of the name of the Item, as well as to keep the code more conscise: there will be a comparator in 
+the conditional of numberInCart anyway, so "equals" method can be used directly there without the need to call getName() first, and then call an extra compara() method.  

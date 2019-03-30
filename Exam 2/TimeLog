@@ -1,0 +1,48 @@
+Sunday, November 11
+5:30 pm - 5:35 pm   looked over the entire test
+5:35 pm - 6:00 pm   wrote code for partition 
+6:00 pm - 6:15 pm   testing
+6:30 pm - 6:30 pm   wrote header of a function as explanation
+6:30 pm - 6:45 pm   calculation of what iterator should do
+6:45 pm - 7:00 pm   wrote the iterator 
+7:00 pm - 7:15 pm   wrote remove functions, tested, 
+					realized there was a bug in the iterator
+7:15 pm - 7:45 pm   finding and fixing bug
+7:45 pm - 8:00 pm   doing documentation, finishing working for now
+
+
+Tuesday, November 12 
+10:30 am - 10:40 am    figured out proper states for left, right and middle
+10:40 am - 11:00 am    writing code + writing documentation in the header
+11:00 am - 11:15 am    testing, being surprised nothing broke
+11:30 am - 11:50 am    writing solutions on a draft, making sure math works
+11:50 am - 12:20 am    typing them up so that they're readable
+12:20 am - 12: 30 am   looking over everything, adding minor comments, wrapping up 
+
+Total time:  Problem 1: 1 hour
+			 Problem 2: 1.5 hours
+			 Problem 3: 45 minutes
+			 Problem 4: a bit under 2 hours
+
+
+Feedback: The longest problem for me was the one with the iterator, 
+mainly because it is harder to debug it, due to the fact that you 
+can't explicitly keep track of what index you are. Also, due to the 
+nature of the code, it's hard to tell if the bug is in next() or 
+hasNext(). Next time, I should do more proper testing to ensure
+that one part works properly before jumping to the second part.
+Besides, I can do more planning of what the function should do 
+before starting to write code. 
+Problem 1 and 3 were helpful to understand loop invariants. Due
+to their similarity, I would say that I found 3d problem more
+helpful, since it explained both loop invariance and binary search
+procedure, while first problem just reminded of something we did earlier
+in class. Second problem was the most helpful to understand how 
+iterators are implemented, so it was a nice excersise. Problem 4 was
+a nice reminder of analysis of algorithms. 
+To sum up, I think all problems served their purpose very well except
+the first one (since, again, we did partition before). Maybe 
+putting a double linked list or something related to advanced 
+implementation of generics instead
+of the 1st problem would allow to cover a wider score of material
+we talked about in class.
